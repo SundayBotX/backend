@@ -99,6 +99,21 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
             
         }
     }
+
+    function setAcControl(agent) {
+        const acId = agent.parameters.number;
+        const action = agent.parameters.command;
+        const temperature = agent.parameters.temperature;
+        var strResponse = 'Hi from setAcControl function, action: ' + action + 'ac id: ' + acId + 'temperature: ' + temperature;
+        agent.add(strResponse);
+
+        if (action === 'set') {
+
+        }
+        else {
+            
+        }
+    }
     
     function windowControl(agent) {
         const windowId = agent.parameters.number;
