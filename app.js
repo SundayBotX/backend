@@ -154,4 +154,4 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         }
         agent.add(strResponse);
     }
-}
+})
