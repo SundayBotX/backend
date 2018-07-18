@@ -64,7 +64,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         const date = agent.parameters.date;
         const time = agent.parameters.time;
         // const dateTimeStart = new Date(Date.parse(agent.parameters.date.split('T')[0] + 'T' + agent.parameters.time.split('T')[1].split('-')[0] + timeZoneOffset));
-        var strResponse = 'Alarm berhasil ditambahkan di tanggal ' + date + ' jam ' + time '.';
+        var strResponse = 'Alarm berhasil ditambahkan di tanggal ' + date + ' jam ' + time + '.';
         agent.add(strResponse);
         
         if (action === 'set') {
@@ -130,7 +130,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         } else if (action === 'status') {
             strResponse = 'Pintu garasi ke-' + garageDoorId + 'lagi ke' + action + '.';
         } else {
-            strResponse = 'Jangan lupa tutup pintu garasi setelah dibuka ya. Stay safe!'
+            strResponse = 'Jangan lupa tutup pintu garasi setelah dibuka ya. Stay safe!';
         }
         agent.add(strResponse);
     }
@@ -154,3 +154,4 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         }
         agent.add(strResponse);
     }
+}
