@@ -17,14 +17,13 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
  
     function welcome(agent) {
-        agent.add(`Welcome to my agent!`);
+        agent.add(`Hallo, aku Sunday, siap membantu keseharian Anda di rumah!`);
     }
  
     function fallback(agent) {
-        agent.add(`I didn't understand`);
-        agent.add(`I'm sorry, can you try again?`);
+        agent.add(`Wah, aku kurang ngerti nih.`);
+        agent.add(`Maaf, boleh diulang?`);
     }
-   
    
    // To learn more about Dialogflow's Fulfillment, read the official documentation
    // https://dialogflow.com/docs/fulfillment
@@ -32,16 +31,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     function lampControl(agent) {
         const lampId = agent.parameters.number;
         const action = agent.parameters.command;
-        var strResponse = 'Hi from turnOnLamp function, action: ' + action + ' lamp id: ' + lampId;
+        var strResponse = 'Lampu ke-' + lampId + ' udah berhasil di' + action + ' nih!';
         agent.add(strResponse);
         
         if (action === 'nyalakan') {
             
-        }
-        else if (action === 'matikan') {
+        } else if (action === 'matikan') {
             
-        }
-        else {
+        } else {
             
         }
     }
@@ -49,16 +46,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     function alarmControl(agent) {
         const alarmId = agent.parameters.number;
         const action = agent.parameters.command;
-        var strResponse = 'Hi from alarmControl function, action: ' + action + ' alarm id: ' + alarmId;
+        var strResponse = 'Alarm ke-' + alarmId + ' udah berhasil di' + action + 'nih!';
         agent.add(strResponse);
         
         if (action === 'nyalakan') {
             
-        }
-        else if (action === 'matikan') {
+        } else if (action === 'matikan') {
             
-        }
-        else {
+        } else {
             
         }
     }
@@ -69,13 +64,12 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         const date = agent.parameters.date;
         const time = agent.parameters.time;
         // const dateTimeStart = new Date(Date.parse(agent.parameters.date.split('T')[0] + 'T' + agent.parameters.time.split('T')[1].split('-')[0] + timeZoneOffset));
-        var strResponse = 'Hi from setAlarmControl function, date: ' + date + ' time: ' + time;
+        var strResponse = 'Alarm berhasil ditambahkan di tanggal ' + date + ' jam ' + time '.';
         agent.add(strResponse);
         
         if (action === 'set') {
             
-        }
-        else {
+        } else {
         
         }
     }
@@ -88,14 +82,9 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         
         if (action === ' nyalakan') {
             
-        }
-        else if (action === 'matikan') {
+        } else if (action === 'matikan') {
             
-        }
-        else if (action === 'set') {
-            
-        }
-        else {
+        } else {
             
         }
     }
@@ -109,8 +98,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
 
         if (action === 'set') {
 
-        }
-        else {
+        } else {
             
         }
     }
@@ -118,16 +106,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     function windowControl(agent) {
         const windowId = agent.parameters.number;
         const action = agent.parameters.command;
-        var strResponse = 'Hi from windowControl function, action: ' + action + 'window id: ' + windowId;
+        var strResponse = 'Jendela ' + windowId + ' udah di' + action + ' loh.';
         agent.add(strResponse);
         
         if (action === 'buka') {
             
-        }
-        else if (action === 'tutup') {
+        } else if (action === 'tutup') {
             
-        }
-        else {
+        } else {
             
         }
     }
@@ -135,45 +121,36 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     function garageDoorControl(agent) {
         const garageDoorId = agent.parameters.number;
         const action = agent.parameters.command;
-        var strResponse = 'Hi from garageDoorControl function, action: ' + action + ' garageDoorId: ' + garageDoorId;
-        agent.add(strResponse);
+        let strResponse = '';
         
         if (action === 'buka') {
-            
+            strResponse = 'Pintu garasi ke-' + garageDoorId + 'sudah di' + action + '. Enjoy your fresh air!';
+        } else if (action === 'tutup') {
+            strResponse = 'Pintu garasi ke-' + garageDoorId + 'sudah di' + action + '.';
+        } else if (action === 'status') {
+            strResponse = 'Pintu garasi ke-' + garageDoorId + 'lagi ke' + action + '.';
+        } else {
+            strResponse = 'Jangan lupa tutup pintu garasi setelah dibuka ya. Stay safe!'
         }
-        else if (action === 'tutup') {
-            
-        }
-        else if (action === 'status') {
-            
-        }
-        else {
-            
-        }
+        agent.add(strResponse);
     }
     
     function frontDoorControl(agent) {
         // const frontDoorId = agent.parameters.number;
         const action = agent.parameters.command;
-        var strResponse = 'Hi from frontDoorControl function, action: ' + action;
-        agent.add(strResponse);
+        let strResponse = '';
         
         if (action === 'bikin password') {
-            
+            strResponse = 'Berhasil ' + action + ' buat pintu depan nih.';
+        } else if (action === 'status') {
+            strResponse = 'Pintu depan lagi ke' + action + '.';
+        } else if (action === 'kunci') {
+            strResponse = 'Siap, ' + action + ' pintu depan.';
+        } else if (action === 'buka') {
+            strResponse = 'Siap, ' + action + ' kunci pintu depan.';
+        } else {
+            // if action ==
+            strResponse = 'Kalau keluar rumah, jangan lupa kunci pintu.';
         }
-        else if (action === 'status') {
-            
-        }
-        else if (action == 'kunci') {
-            
-        }
-        else if (action == 'buka') {
-            
-        }
-        else if (action == 'tutup') {
-            
-        }
-        else {
-            
-        }
+        agent.add(strResponse);
     }
