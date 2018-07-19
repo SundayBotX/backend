@@ -46,7 +46,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     function alarmControl(agent) {
         const alarmId = agent.parameters.number;
         const action = agent.parameters.command;
-        var strResponse = 'Alarm ke-' + alarmId + ' udah berhasil di' + action + 'nih!';
+        var strResponse = 'Alarm ke-' + alarmId + ' udah berhasil di' + action + ' nih!';
         agent.add(strResponse);
         
         if (action === 'nyalakan') {
@@ -154,4 +154,19 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         }
         agent.add(strResponse);
     }
-})
+    
+    // Run the proper function handler based on the matched Dialogflow intent name
+    let intentMap = new Map();
+    intentMap.set('Default Welcome Intent', welcome);
+    intentMap.set('Default Fallback Intent', fallback);
+    intentMap.set('Lamp', lampControl);
+    intentMap.set('AC', acControl);
+    intentMap.set('Set AC', setAcControl);
+    intentMap.set('Alarm', alarmControl);
+    intentMap.set('Set Alarm', setAlarmControl);
+    intentMap.set('Front Door', frontDoorControl);
+    intentMap.set('Garage Door', garageDoorControl);
+    intentMap.set('Window', windowControl);
+
+    agent.handleRequest(intentMap);
+});
