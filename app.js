@@ -77,7 +77,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     function acControl(agent) {
         const acId = agent.parameters.number;
         const action = agent.parameters.command;
-        var strResponse = 'Hi from acControl function, action: ' + action + ' ac id: ' + acId;
+        var strResponse = 'AC yang ke-' + acId + ' udah di' + action + ' ya.';
         agent.add(strResponse);
         
         if (action === ' nyalakan') {
@@ -93,7 +93,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         const acId = agent.parameters.number;
         const action = agent.parameters.command;
         const temperature = agent.parameters.temperature;
-        var strResponse = 'Hi from setAcControl function, action: ' + action + 'ac id: ' + acId + 'temperature: ' + temperature;
+        var strResponse = 'Suhu AC ke-' + acId + ' udah di' + action + ' jadi ' + temperature + '.';
         agent.add(strResponse);
 
         if (action === 'set') {
